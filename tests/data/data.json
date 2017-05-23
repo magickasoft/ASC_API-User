@@ -1,0 +1,22 @@
+[{
+  "publicEmail": "user1@example.com",
+  "identityID": "000000000000000000000001",
+  "skills": [{
+    "sport": "BMX",
+    "level": "Beginner"
+  }, {
+    "sport": "Motocross",
+    "level": "Intermediate"
+  }]
+
+}, {
+  "publicEmail": "user2@example.com",
+  "identityID": "000000000000000000000002",
+  "skills": [{
+    "sport": "Skateboarding",
+    "level": "Advanced"
+  }, {
+    "sport": "Snowboarding",
+    "level": "Advanced"
+  }]
+}]

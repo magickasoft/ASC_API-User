@@ -1,0 +1,146 @@
+swagger: '2.0'
+info:
+  version: '0.1'
+  title: ASC Identity management API
+  description: "These are the profile API for any ASC's user.<br> Here a user can create and update their profile. Users can list the other profiles."
+host: api.asc.com
+basePath: /v1
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  '/profiles':
+    get:
+      description: List all profiles
+      responses:
+        '200':
+          description: List of profiles
+          schema:
+            type: array
+            items:
+              $ref: ../models/profile.yaml
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt:
+          - admins
+          - users
+          - owner
+    post:
+      description: Declares and creates a new profile
+      parameters:
+        - name: _profile
+          in: body
+          description: Details of the profile
+          required: true
+          schema:
+            $ref: ../models/profile.yaml
+      responses:
+        '201':
+          description: Creation successful
+          headers:
+             location:
+               type: string
+          schema:
+              $ref: ../models/profile.yaml
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt:
+          - admins
+          - owner
+  '/profiles/{id}':
+    get:
+      description: Retrieves a profile by ID
+      parameters:
+        - name: id
+          in: path
+          description: ID of the profile to get
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Details of the profile by ID
+          schema:
+            $ref: ../models/profile.yaml
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt:
+          - admins
+          - users
+          - owner
+    put:
+      description: Updates an existing profile
+      parameters:
+        - name: id
+          in: path
+          description: ID of the profile to update
+          required: true
+          type: string
+        - name: _profile
+          in: body
+          description: Details of the profile to update
+          required: true
+          schema:
+            $ref: ../models/profile.yaml
+      responses:
+        '200':
+          description: Update successful
+          schema:
+            $ref: ../models/profile.yaml
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt:
+          - admins
+          - owner
+    delete:
+      description: Removes an existing profile
+      parameters:
+        - name: id
+          in: path
+          description: ID of the profile to delete
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Delete successful
+          schema:
+            type: string
+        default:
+          description: An error occurred
+          schema:
+            $ref: ../models/errors.yaml
+      security:
+        - jwt:
+          - admins
+          - owner
+securityDefinitions:
+  jwt:
+    description: "Identity token"
+    type: "oauth2"
+    flow: "implicit"
+    authorizationUrl: "/v1/identities/login/basic"
+    scopes:
+      owner: Owner scope
+      admins: Administrators scope
+      users: Regular users scope
+      premium_users: Premium users scope
+      internal_ms: Internal microservices scope
+    x-authorize-owner:
+      identityID : _id
+definitions:
+  Profile:
+    $ref: ../models/profile.yaml

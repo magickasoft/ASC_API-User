@@ -1,0 +1,215 @@
+type: object
+properties:
+  _id:
+    description: ObjectID from MongoDB
+    type: string
+    x-swaggering-mongoose:
+      type: ObjectId
+  createdAt:
+    type: string
+    format: date
+    minLength: 0
+  updatedAt:
+    type: string
+    format: date
+    minLength: 0
+  identityID:
+    description: Related identity ID
+    type: string
+    x-swaggering-mongoose:
+      type: ObjectId
+      index:
+        unique: 1
+# profile properties:
+  avatar:
+    description: User's avatar
+    type: string
+    format: binary
+    minLength: 0
+ # from InstantASP_Users
+  culture:
+    description: User's avatar
+    type: string
+    minLength: 0
+  firstName:
+    type: string
+    minLength: 0
+    maxLength: 45
+    pattern: "^[A-Za-z][a-zA-Z]+$"
+  lastName:
+    type: string
+    minLength: 0
+    maxLength: 45
+    pattern: "^[A-Za-z][a-zA-Z]+$"
+  companyName:
+    type: string
+    minLength: 0
+    maxLength: 45
+  jobTitle:
+    type: string
+    minLength: 0
+    maxLength: 45
+  # contacts
+  publicEmail:
+    description: User's public email
+    type: string
+    format: email
+    minLength: 0
+    maxLength: 45
+  webAddress:
+    type: string
+    format: uri
+    minLength: 0
+  blogAddress:
+    type: string
+    format: uri
+    minLength: 0
+  MSN:
+    type: string
+    minLength: 0
+    maxLength: 45
+  Skype:
+    type: string
+    minLength: 0
+    maxLength: 45
+  YIM:
+    type: string
+    minLength: 0
+    maxLength: 45
+  AIM:
+    type: string
+    minLength: 0
+    maxLength: 45
+  ICQ:
+    type: string
+    minLength: 0
+    maxLength: 45
+  Twitter:
+    type: string
+    minLength: 0
+    maxLength: 45
+  Facebook:
+    type: string
+    minLength: 0
+    maxLength: 45
+  LinkedIn:
+    type: string
+    minLength: 0
+    maxLength: 45
+  MySpace:
+    type: string
+    minLength: 0
+    maxLength: 45
+  YouTube:
+    type: string
+    minLength: 0
+    maxLength: 45
+  GooglePlus:
+    type: string
+    minLength: 0
+    maxLength: 45
+  SnapChat:
+    type: string
+    minLength: 0
+    maxLength: 45
+  WhatsApp:
+    type: string
+    minLength: 0
+    maxLength: 45
+ # from InstantForum_Users
+  biography:
+    type: string
+    minLength: 0
+    maxLength: 45
+ # from Members
+  address:
+    type: string
+    minLength: 0
+    maxLength: 150
+  zip:
+    description: Postal index number or ZipCode
+    type: integer
+    minimum: 0
+  country:
+    type: string
+    minLength: 0
+    maxLength: 45
+  gender:
+    type: string
+    enum:
+      - male
+      - female
+  spiritualBelief:
+    type: string
+    enum:
+    - Athiest
+    - Agnostic
+    - Buddhism
+    - Christianity
+    - Confucianism
+    - Hinduism
+    - Islam
+    - Judaism
+    - Sikhism
+    - Taoism
+    - Universalism
+    - Undecided
+    - Other
+ # other fields
+  city:
+    type: string
+    minLength: 0
+    maxLength: 45
+  state:
+    type: string
+    minLength: 0
+    maxLength: 45
+  birthday:
+    type: string
+    format: date
+  username:
+    type: string
+    minLength: 0
+    maxLength: 45
+  about:
+    type: string
+    minLength: 0
+    maxLength: 500
+  skills:
+    type: array
+    items:
+      type: object
+      required:
+        - sport
+        - level
+      properties:
+        sport:
+          type: string
+          enum:
+          - BMX
+          - Inline Skating
+          - Kayaking
+          - Kiteboarding
+          - Motocross
+          - Mountain Biking
+          - Parkour
+          - Skateboarding
+          - Skiing
+          - Skim Boarding
+          - Skydiving
+          - Snowboarding
+          - Surfing
+          - Wakeboarding
+        level:
+          type: string
+          enum:
+          - Starting
+          - Beginner
+          - Intermediate
+          - Advanced
+          - Expert
+        _id:
+          description: ObjectID from MongoDB
+          type: string
+          x-swaggering-mongoose:
+            type: ObjectId
